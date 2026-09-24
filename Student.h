@@ -4,9 +4,9 @@
 
 class Student {
 private:
-    std::string name;  
-    std::string id;      
-    int borrowCount;     // 已借数量
+    std::string name_;  
+    std::string id_;      
+    int borrowCount_;     // 已借数量
 
 public:
     Student(std::string n, std::string i); // 构造函数

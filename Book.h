@@ -4,12 +4,12 @@
 
 class Book {
 private: 
-    std::string name;       
-    std::string isbn;       
-    std::string publisher;  
-    double price;           
-    int pages;              
-    bool isAvailable;       // 在馆状态 (true为可借，false为借出)
+    std::string name_;       
+    std::string isbn_;       
+    std::string publisher_;  
+    double price_;           
+    int pages_;              
+    bool isAvailable_;       // 在馆状态 (true为可借，false为借出)
 
 public:
     Book();    
