@@ -1,54 +1,16 @@
 #include "Book.h"
 using namespace std;
 
-// 默认构造函数
-Book::Book() {
-    name_ = "未知书名";
-    isbn_ = "0000000000000";
-    publisher_ = "未知出版社";
-    price_ = 0.0;
-    pages_ = 0;
-    isAvailable_ = true;
-}
-
-// 带参数的构造函数
-Book::Book(string name, string isbn, string publisher, double price, int pages, bool isAvailable) {
-    name_ = name;
+// 重点：构造函数初始化列表！
+// 子类产生前必须让父类先产生，用冒号调用 Resource 的构造函数
+Book::Book(string id, string name, string author, string isbn)
+    : Resource(id, name) // 给父类的属性赋值
+{
+    author_ = author;    // 给子类的属性赋值
     isbn_ = isbn;
-    publisher_ = publisher;
-    price_ = price;
-    pages_ = pages;
-    isAvailable_ = isAvailable;
 }
 
-// 修改
-void Book::setPrice(double newPrice) {
-    if (newPrice >= 0) { 
-        price_ = newPrice;
-    }
-}
-
-void Book::setAvailability(bool status) {
-    isAvailable_ = status;
-}
-
-// 获取
-string Book::getName() const { return name_; }
-bool Book::getAvailability() const { return isAvailable_; }
-
-// 输出
 void Book::printInfo() const {
-    cout << "【书名】:" << name_ << " | 【ISBN】:" << isbn_
-        << " | 【出版社】:" << publisher_ << " | 【价格】:" << price_
-        << " | 【页数】:" << pages_
-        << " | 【状态】:" << (isAvailable_ ? "可借" : "已借出") << endl;
-}
-
-// 验证ISBN
-bool Book::isValidISBN() const {
-    if (isbn_.length() != 13) return false;
-    for (char c : isbn_) {
-        if (!isdigit(c)) return false;
-    }
-    return true;
+    Resource::printInfo(); 
+    cout << " | 【类型】: 一般图书 | 【作者】:" << author_ << " | 【ISBN】:" << isbn_ << endl;
 }

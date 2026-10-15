@@ -1,31 +1,14 @@
-#pragma once // 防止重复编译
-#include <string>
-#include <iostream>
+#pragma once
+#include "Resource.h" // 必须包含基类头文件
 
-class Book {
-private: 
-    std::string name_;       
-    std::string isbn_;       
-    std::string publisher_;  
-    double price_;           
-    int pages_;              
-    bool isAvailable_;       // 在馆状态 (true为可借，false为借出)
+// Book 是 Resource 的继承
+class Book : public Resource {
+private:
+    std::string author_;      
+    std::string isbn_;        
 
 public:
-    Book();    
-    Book(std::string n, std::string i, std::string p, double pr, int pg, bool avail);    
-
-    //修改信息
-    void setPrice(double newPrice);
-    void setAvailability(bool status);
-
-    // 获取信息
-    std::string getName() const;
-    bool getAvailability() const;
-
-    // 输出信息
+    // 构造函数，注意参数里除了自己的，还要包含父类的
+    Book(std::string id, std::string name, std::string author, std::string isbn);
     void printInfo() const;
-
-    // 验证ISBN合法性
-    bool isValidISBN() const;
 };
